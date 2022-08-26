@@ -30,7 +30,48 @@
    let caseInsensitive = capitalLetter.toUpperCase()+caseLower.slice(1);
    return console.log(caseInsensitive);
   }
+ // Check the decisions of player and Computer in terms of items    
+
  
+ // const itemPool =[Paper,Rock,Scissors,Paper,Rock,Scissors];
+
+ function isRock (item) {
+   return item==="Rock";
+     
+ }
+
+ function isScissors (item){
+    return item === "Scissors";
+ }
+
+ function isPaper (item){
+    return item === "Paper";
+}
+
+
+  // A single round of Rock,Paper Scissors 
+
+  function round (comp,player) {
+    if (comp === player){
+    return  "Tie!";
+    } 
+    if (isRock && isPaper) {
+        return "winner is Paper!";
+    }
+    if (isRock && isScissors) {
+        return "winner is Rock!";
+    }
+    if (isPaper && isScissors){
+        return "winner is Scissors!";
+    }
+    
+  }
+
+  //Winner should be stored in Player or Computer side
+
+
+
+
     </script>
 </body>
 </html>
