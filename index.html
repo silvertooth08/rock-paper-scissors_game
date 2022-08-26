@@ -18,7 +18,19 @@
     return console.log(itemComputer);
   }
 
+// 2. Player should be able to decide rock,paper or scissors regardless of their case
 
+  function choosePlayer () {
+   // This part takes the player input
+    const itemPlayer = prompt("Please choose among Rock,Paper or Scissors","");
+  // This part converts case insensitive
+
+   let caseLower = itemPlayer.toLowerCase();
+   let capitalLetter= itemPlayer.charAt(0);
+   let caseInsensitive = capitalLetter.toUpperCase()+caseLower.slice(1);
+   return console.log(caseInsensitive);
+  }
+ 
     </script>
 </body>
 </html>
