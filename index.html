@@ -10,27 +10,43 @@
     <script>
     
     "use strict";
+    // 1. Player should be able to decide rock,paper or scissors regardless of their case 
+    //don't forget to store it in a variable
+      function choosePlayer () {
+       // This part takes the player input
+        const itemPlayer = prompt("Please choose among Rock,Paper or Scissors","");
+      // This part converts case insensitive
+       
+       let caseLower = itemPlayer.toLowerCase();
+       let capitalLetter= itemPlayer.charAt(0);
+       let caseInsensitive = capitalLetter.toUpperCase()+caseLower.slice(1);
+       return caseInsensitive;
+      }
+      let itemPlayer = choosePlayer();
 
-// 1. Computer should be able to pick Rock,paper,scissors randomly and store it in a variable
-  function chooseComp() {
+// 2. Computer should be able to pick Rock,paper,scissors randomly and store it in a variable
+   const chooseComp = function() {
     const items= ["Rock","Paper","Scissors"];
     const itemComputer = items[Math.floor(Math.random()*3)];
-    return console.log(itemComputer);
+    return itemComputer;
+  };
+
+  let itemComp = chooseComp();
+
+  //a single round of Game
+
+  function round () {
+    choosePlayer();
+    chooseComp();
+    checkWinner();
+    //let messageResult = checkWinner();
+    console.log(messageResult);
+    getScore();
+    console.log(score.join(""));;
   }
 
-// 2. Player should be able to decide rock,paper or scissors regardless of their case
 
-  function choosePlayer () {
-   // This part takes the player input
-    const itemPlayer = prompt("Please choose among Rock,Paper or Scissors","");
-  // This part converts case insensitive
-
-   let caseLower = itemPlayer.toLowerCase();
-   let capitalLetter= itemPlayer.charAt(0);
-   let caseInsensitive = capitalLetter.toUpperCase()+caseLower.slice(1);
-   return console.log(caseInsensitive);
-  }
- // Check the decisions of player and Computer in terms of items    
+ //3. Check the decisions of player and Computer in terms of items    
 
  
  // const itemPool =[Paper,Rock,Scissors,Paper,Rock,Scissors];
@@ -49,25 +65,72 @@
 }
 
 
-  // A single round of Rock,Paper Scissors 
+  // Decision of the winner 
 
-  function round (comp,player) {
-    if (comp === player){
+  function checkWinner (comp,player) {
+    if (itemComp === itemPlayer){
     return  "Tie!";
-    } 
-    if (isRock && isPaper) {
-        return "winner is Paper!";
     }
-    if (isRock && isScissors) {
-        return "winner is Rock!";
+    //Computer Winning Conditions 
+    if (isRock(itemPlayer) && isPaper(itemComp)) {
+        return "Paper beats Rock! You lost!"; 
     }
-    if (isPaper && isScissors){
-        return "winner is Scissors!";
+    if (isScissors(itemPlayer) && isRock(itemComp)) {
+        return "Rock beats Scissors! You lost!";
     }
-    
+    if (isPaper(itemPlayer) && isScissors(itemComp)){
+        return "Scissors beats Paper! You lost!";
+    }
+    //Player Winning Conditions
+    if (isRock(itemComp) && isPaper(itemPlayer)) {
+        return "Paper beats Rock! You won!";
+    }
+    if (isScissors(itemComp) && isRock(itemPlayer)){
+        return "Rock beats Scissors! You won!";
+    }
+    if(isPaper(itemComp) && isScissors(itemPlayer)){
+        return "Scissors beats Paper! You won!";
+    }
   }
+let messageResult = checkWinner();
+// let playerScore = 0;
+// let computerScore = 0;
 
-  //Winner should be stored in Player or Computer side
+  //4.Winner should be stored in Player or Computer side
+let score = ["Round: ",0 , "  Player Score : ",0," | ",0," : Computer Score"];
+function getScore() {
+if (messageResult.slice(-8) === "You won!" ) {
+    let result =  score[3] += 1
+                 score[1] += 1;
+                 return result;
+}
+if (messageResult.slice(-9) === "You lost!") {
+   let result=  score[5] += 1
+                score[1] += 1;
+                return result;
+}
+if (messageResult === "Tie!") {
+   let result = score [1] += 1;
+                return result;
+}
+}
+ // score [1] contols round numbers , score[3] controls player wins 
+ //score [5]controls computer wins
+// console.log(messageResult);
+// console.log(score.join(""));
+
+//5. Making a 5 round game with recursion
+
+function playGame () {
+    for (let i = 0; i < 5 ;i++ ) {
+        round();
+    }
+}
+
+playGame();
+
+
+
 
 
 
