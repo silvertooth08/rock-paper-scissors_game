@@ -18,10 +18,12 @@ h1 {
     display: flex;
     align-content: center;
     justify-content: center;
+    font-display: ;
 }
 
 .game-input > h2 {
    margin-bottom: 3em;
+   text-decoration: underline;
 }
 
 h3 {
@@ -57,11 +59,12 @@ footer {
 
 
 
-.images > div {
+.images > div:hover {
     border:slategrey;
     border-style: solid;
-    
+    opacity: 1;
 }
+
 
 .images > div > p {
     text-align: center;
@@ -90,4 +93,8 @@ button {
     font-family: 'Permanent Marker';
     font-size: 40px;
     color:  rgb(219, 129, 18);
+}
+
+button:hover {
+    color:black;
 }
