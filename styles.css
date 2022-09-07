@@ -1,0 +1,29 @@
+h1 {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+h2 {
+    min-width: max-content;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+img {
+    
+    max-width: 15em;
+    max-height: 10em;
+    min-height: auto;
+    min-width: 3em;
+}
