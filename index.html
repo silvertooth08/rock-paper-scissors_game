@@ -1,67 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quartz,Parchment and Shears!</title>
-        
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        
-        <header><h1>QUARTZ,PARCHMENT and SHEARS!</h1></header>
-        <section class="game-input">
-            <button class="start-button">Start</button>
-            
-            <h2>Player's Selection</h2>
-            
-            <div class="images">
-                <a href="#" id="Rock">
-                    <div>
-                        <img src="img/quartz.png" id="quartz" alt="A picture of Quartz">
-                        <p>Quartz
-                            <br>Beats Shears but weak aganist Parchment 
-                        </p>
-                        
-                    </div>
-                </a>
-                <a href="#" id="Scissors">
-                    <div>
-                        <img src="img/shears.png" id="shears" alt="A picture of Shears">
-                        <p>Shears
-                            <br>Beats Parchment but weak aganist Quartz 
-                        </p>
-                    </div>
-                </a>
-                
-                <a href="#" id="Paper">
-                    
-                    <div>
-                        <img src="img/parchment.png" id="parchment" alt="A picture of Parchment">
-                        <p>Parchment
-                            <br>Beats Quartz but weak aganist Scissors
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </section>
-        
-        <section class="message"><h2>Round Result</h2>
-            <p>you won or lost here!</p>
-            <div class="pops-image"><img src="img/Pops.png" alt="Cute Pops picture"></div>
-        </section>
-        
-        <footer>Copyright © silvertooth08 </footer>
-        
-        
-        <audio id="start-sound" src="audio/StartPops.mp3"></audio>
-        <audio src="audio/VictoryPops.mp3"></audio>
-        <audio src="audio/LosePops.mp3"></audio>
-        <audio id="hover" preload="auto" src="audio/hover.wav"></audio>
-        <script src="main.js" defer></script>
-    </body>
-    </html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quartz,Parchment and Shears!</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>QUARTZ,PARCHMENT and SHEARS!</h1>
+    </header>
+    <section class="game-input">
+
+        <button class="start-button">Start</button>
+        <h2>Player's Selection</h2>
+
+        <button id="Quartz">Quartz</button>
+        <button id="Parchment">Parchment</button>
+        <button id="Shears">Shears</button>
+    </section>
+
+
+
+    <section class="message">
+        <h2>Round Result</h2>
+        <p class="round-result-message">you won or lost here!</p>
+        <div class="pops-image"><img src="img/Pops.png" alt="Cute Pops picture"></div>
+    </section>
+
+    <footer>Copyright © silvertooth08 </footer>
+
+
+    <audio id="start-sound" src="audio/StartPops.mp3"></audio>
+    <audio src="audio/VictoryPops.mp3"></audio>
+    <audio src="audio/LosePops.mp3"></audio>
+    <audio id="hover" preload="auto" src="audio/hover.wav"></audio>
+    <script src="main.js" defer></script>
+
+</body>

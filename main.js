@@ -1,174 +1,126 @@
-"use strict";
+"use strict"
+
+
+const quartzButton = document.getElementById("Quartz")
+quartzButton.addEventListener('click',selectionHandler);
+const parchmentButton = document.getElementById("Parchment");
+parchmentButton.addEventListener('click',selectionHandler);
+const shearsButton = document.getElementById("Shears");
+shearsButton.addEventListener('click',selectionHandler);
+const body = document.querySelector("body")
+
+const gameOverMessage = document.createElement("h3")
+function selectionHandler (e) {
+   itemPlayer= e.target.id
+   itemComputer= chooseComputer();
+   checkWinner();
+   getScore();
+   if (playerWins >= 5 || computerWins >= 5 ) {
+       quartzButton.disabled = true
+       parchmentButton.disabled = true
+       shearsButton.disabled=true
+       if (playerWins > computerWins){
+         gameOverMessage.textContent= "Congratulations! You won the game,Pops is very happy and safe now!"
+       }
+       if (computerWins > playerWins){
+        gameOverMessage.textContent="Oh no! You have lost the game! Now Pops is in great agony and crying!"
+       }
+   }
+}
+
+const roundResultMessage = document.createElement("p")
+const resultContainer = document.createElement("div");
+resultContainer.classList.add('container')
 
 
 
-// const { constants } = require("buffer");
-
-// 1. Player should be able to decide rock,paper or scissors regardless of their case
-// don't forget to store it in a variable
-
-let itemPlayer;
-        
-        // This part takes the player input
-        
-    function choosePlayer() {
-    let anchors = document.querySelectorAll("a");
-        anchors.forEach((anchor) =>
-        anchor.addEventListener("click", () => {
-            anchor.id
-            return itemPlayer = anchor.id;
-    
-        })
-    )}      
-        // 2. Computer should be able to pick Rock,paper,scissors randomly and store it in a variable
-let itemComputer;
 
 function chooseComputer() {
-    const items = ["Rock", "Paper", "Scissors"];
-    let itemComputer = items[Math.floor(Math.random() * 3)];
+    let itemComputer;
+    const items = ["Quartz", "Parchment", "Shears"];
+    itemComputer = items[Math.floor(Math.random() * 3)];
     return itemComputer;
 };
 
+let itemPlayer;
+let itemComputer;
 
+let roundCount = 0;
+let playerWins = 0;
+let computerWins = 0;
 
-
-
-//3. Check the decisions of player and Computer in terms of items
-
-
-function isRock(item) {
-    return item === "Rock";
-    
-}
-
-function isScissors(item) {
-    return item === "Scissors";
-}
-
-function isPaper(item) {
-    return item === "Paper";
-}
-
-
-// Decision of the winner
-
-function checkWinner(comp, player) {
-
+function checkWinner() {
     if (itemComputer === itemPlayer) {
-        return "Tie!";
+        roundResultMessage.innerText = "Tie!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
     }
     //Computer Winning Conditions
-    if (isRock(itemPlayer) && isPaper(itemComputer)) {
-        return "Parchment beats Quartz! You lost!";
+    if ((itemPlayer === "Quartz") && (itemComputer === "Parchment")) {
+        roundResultMessage.innerText = "Parchment covers Quartz! You lost!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
+        return   computerWins++
     }
-    if (isScissors(itemPlayer) && isRock(itemComputer)) {
-        return "Quartz beats Shears! You lost!";
+    if ((itemPlayer === "Shears") && (itemComputer === "Quartz")) {
+        roundResultMessage.innerText = "Quartz crushes Shears! You lost!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
+        return  computerWins++
     }
-    if (isPaper(itemPlayer) && isScissors(itemComputer)) {
-        return "Shears beats Parchment! You lost!";
+    if ((itemPlayer === "Parchment") && (itemComputer === "Shears")) {
+        roundResultMessage.innerText = "Shears cuts Parchment! You lost!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
+        return    computerWins++
     }
     //Player Winning Conditions
-    if (isRock(itemComputer) && isPaper(itemPlayer)) {
-        return "Parchment beats Quartz! You won!";
+    if ((itemComputer === "Quartz") && (itemPlayer === "Parchment")) {
+        roundResultMessage.innerText = "Parchment covers Quartz! You won!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
+        return  playerWins++
     }
-    if (isScissors(itemComputer) && isRock(itemPlayer)) {
-        return "Quartz beats Shears! You won!";
+    if ((itemComputer === "Shears") && (itemPlayer === "Quartz")) {
+        roundResultMessage.innerText = "Quartz crushes Shears! You won!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
+        return   playerWins++
     }
-    if (isPaper(itemComputer) && isScissors(itemPlayer)) {
-        return "Shears beats Parchment! You won!";
+    if ((itemComputer === "Parchment") && (itemPlayer === "Shears")) {
+        roundResultMessage.innerText = "Shears cuts Parchment! You won!";
+        resultContainer.appendChild(roundResultMessage);
+        roundCount++
+        return playerWins++
     }
 }
-
-let messageResult;
-
-//4.Winner should be stored in Player or Computer side
-let score = ["Round: ", 0, "  Player Score : ", 0, " | ", 0, " : Computer Score"];
+body.appendChild(resultContainer)
+const scoreBoard = document.createElement("h3")
 
 function getScore() {
-    if (messageResult.slice(-8) === "You won!") {
-        let result = score[3] += 1
-        score[1] += 1;
-        return result;
-    }
-    if (messageResult.slice(-9) === "You lost!") {
-        let result = score[5] += 1
-        score[1] += 1;
-        return result;
-    }
-    if (messageResult === "Tie!") {
-        let result = score[1] += 1;
-        return result;
-    }
+    
+    scoreBoard.textContent=`Round:  ${roundCount}  Player wins:   ${playerWins}  Computer wins:  ${computerWins}`
 }
 
-// score [1] contols round numbers , score[3] controls player wins
-//score [5]controls computer wins
-// console.log(messageResult);
-//
+body.appendChild(scoreBoard)
+
+body.appendChild(gameOverMessage)
 
 
-//5. Making a 5 round game with recursion
 
-// function playGame() {
-    //     for (let i = 0; i < 5; i++) {
-        //         round();
-        //         if (score[3] === 5 || score[5] === 5) break;
-        //     }
-        // }
+document.querySelector(".start-button").addEventListener("click", playStart);
         
-        
-        //  playGame();
-        
-        
-        
-        
-        
-        //Hover sound for selection images
-        document.querySelector(".images").addEventListener("mouseover", playSound);
-        
-        function playSound() {
-            const audio = document.getElementById("hover");
-            audio.play();
-        }
-        
-        
-        // // Start sound here
-        document.querySelector(".start-button").addEventListener("click", playStart);
-        
-        function playStart() {
-            const buttonPress = document.getElementById("start-sound");
-            buttonPress.play();
-        }
-        
-        
-        // a single round of Game
-async function playRound () {
-itemPlayer = await choosePlayer();
-itemComputer = chooseComputer();
-checkWinner();
-messageResult = await checkWinner();
-getScore();
-console.log(score.join(""));
+function playStart() {
+    const buttonPress = document.getElementById("start-sound");
+    buttonPress.play();
 }
 
+quartzButton.addEventListener("mouseover", playSound);
+shearsButton.addEventListener("mouseover", playSound);
+parchmentButton.addEventListener("mouseover", playSound);
+        
+function playSound() {
+    const audio = document.getElementById("hover");
+    audio.play();
+}
 
-playRound();
-        
-        
-        
-        
-        // // Victory Sound here
-        // function playWinSound() {
-            //     const winSound = document.getElementById("winnersound");
-            //     winSound.play();
-            // }
-
-            
-            
-            // // Lose Sound here
-            // function playLoseSound() {
-                //     const loseSound = document.getElementById("losersound");
-                //     loseSound.play();
-                // }
-                
-                
