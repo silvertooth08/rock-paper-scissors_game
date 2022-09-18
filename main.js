@@ -9,7 +9,7 @@ const shearsButton = document.getElementById("Shears");
 shearsButton.addEventListener('click',selectionHandler);
 const body = document.querySelector("body")
 
-const gameOverMessage = document.createElement("h3")
+const gameOverMessage = document.getElementById("gameOverMessage")
 function selectionHandler (e) {
    itemPlayer= e.target.id
    itemComputer= chooseComputer();
@@ -21,16 +21,17 @@ function selectionHandler (e) {
        shearsButton.disabled=true
        if (playerWins > computerWins){
          gameOverMessage.textContent= "Congratulations! You won the game,Pops is very happy and safe now!"
+         playWinSound();
        }
        if (computerWins > playerWins){
         gameOverMessage.textContent="Oh no! You have lost the game! Now Pops is in great agony and crying!"
+        playLoseSound();
        }
    }
 }
 
-const roundResultMessage = document.createElement("p")
-const resultContainer = document.createElement("div");
-resultContainer.classList.add('container')
+const roundResultMessage = document.getElementById("roundMessage")
+
 
 
 
@@ -52,59 +53,57 @@ let computerWins = 0;
 function checkWinner() {
     if (itemComputer === itemPlayer) {
         roundResultMessage.innerText = "Tie!";
-        resultContainer.appendChild(roundResultMessage);
+        
         roundCount++
     }
     //Computer Winning Conditions
     if ((itemPlayer === "Quartz") && (itemComputer === "Parchment")) {
         roundResultMessage.innerText = "Parchment covers Quartz! You lost!";
-        resultContainer.appendChild(roundResultMessage);
+       
         roundCount++
         return   computerWins++
     }
     if ((itemPlayer === "Shears") && (itemComputer === "Quartz")) {
         roundResultMessage.innerText = "Quartz crushes Shears! You lost!";
-        resultContainer.appendChild(roundResultMessage);
+       
         roundCount++
         return  computerWins++
     }
     if ((itemPlayer === "Parchment") && (itemComputer === "Shears")) {
         roundResultMessage.innerText = "Shears cuts Parchment! You lost!";
-        resultContainer.appendChild(roundResultMessage);
+       
         roundCount++
         return    computerWins++
     }
     //Player Winning Conditions
     if ((itemComputer === "Quartz") && (itemPlayer === "Parchment")) {
         roundResultMessage.innerText = "Parchment covers Quartz! You won!";
-        resultContainer.appendChild(roundResultMessage);
+        
         roundCount++
         return  playerWins++
     }
     if ((itemComputer === "Shears") && (itemPlayer === "Quartz")) {
         roundResultMessage.innerText = "Quartz crushes Shears! You won!";
-        resultContainer.appendChild(roundResultMessage);
+        
         roundCount++
         return   playerWins++
     }
     if ((itemComputer === "Parchment") && (itemPlayer === "Shears")) {
         roundResultMessage.innerText = "Shears cuts Parchment! You won!";
-        resultContainer.appendChild(roundResultMessage);
+        
         roundCount++
         return playerWins++
     }
 }
-body.appendChild(resultContainer)
-const scoreBoard = document.createElement("h3")
+
+const scoreBoard = document.getElementById("roundScore")
 
 function getScore() {
     
     scoreBoard.textContent=`Round:  ${roundCount}  Player wins:   ${playerWins}  Computer wins:  ${computerWins}`
 }
 
-body.appendChild(scoreBoard)
 
-body.appendChild(gameOverMessage)
 
 
 
@@ -124,3 +123,12 @@ function playSound() {
     audio.play();
 }
 
+function playWinSound () {
+    const audio = document.getElementById("winSound")
+    audio.play();
+}
+
+function playLoseSound () {
+    const audio = document.getElementById("loseSound")
+    audio.play();
+}

@@ -30,8 +30,9 @@
 
 
     <section class="message">
-        <h2>Round Result</h2>
-        <p class="round-result-message">you won or lost here!</p>
+        <h2 id="roundScore"></h2>
+        <p id="roundMessage"></p>
+        <h2 id="gameOverMessage"></h2>
         <div class="pops-image"><img src="img/Pops.png" alt="Cute Pops picture"></div>
     </section>
 
@@ -39,8 +40,8 @@
 
 
     <audio id="start-sound" src="audio/StartPops.mp3"></audio>
-    <audio src="audio/VictoryPops.mp3"></audio>
-    <audio src="audio/LosePops.mp3"></audio>
+    <audio id="winSound"src="audio/VictoryPops.mp3"></audio>
+    <audio id="loseSound" src="audio/LosePops.mp3"></audio>
     <audio id="hover" preload="auto" src="audio/hover.wav"></audio>
     <script src="main.js" defer></script>
 
